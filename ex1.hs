@@ -34,8 +34,6 @@ findDuplicate = go []
           go seen (x:xs)    | x `elem` seen = Just x
                             | otherwise = go(x:seen) xs
 
-        
-
 answerPart2 = do
     content <- fmap(fmap readInt . T.lines) $ TIO.readFile "ex1.txt"
     print $ part2 content
