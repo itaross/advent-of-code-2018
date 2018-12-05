@@ -25,10 +25,17 @@ answerPart1 = do
     let answer = sumOfElements content
     print answer
 
-calculateNexSum::[Integer] -> [Integer] -> Integer -> Integer
-calculateNexSum sums list idx = do
-    sum = 
+part2 :: [Integer] -> Maybe Integer
+part2 = findDuplicate . scanl (+) 0 . cycle
+
+findDuplicate :: Eq a => [a] -> Maybe a
+findDuplicate = go []
+    where go seen [] = Nothing
+          go seen (x:xs)    | x `elem` seen = Just x
+                            | otherwise = go(x:seen) xs
+
+        
 
 answerPart2 = do
     content <- fmap(fmap readInt . T.lines) $ TIO.readFile "ex1.txt"
-    print content
+    print $ part2 content
