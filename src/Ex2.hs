@@ -1,3 +1,5 @@
+module Ex2 where
+    
 import Data.List
 import qualified Data.Text.IO as TIO
 import qualified Data.Text as T
