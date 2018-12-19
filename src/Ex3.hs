@@ -53,10 +53,17 @@ solEx3 = do
   content <- fmap (T.lines) $ TIO.readFile "src/ex3.txt"
   let rectangles = parseFabricFile content
   let listedRectangles = concatMap generateListFromRectangle rectangles
-  print . length . filter (>1) . fmap length . group . sort $ listedRectangles
 
-generateListFromRectangle :: Rectangle -> [(Integer, Integer)]
+  -- part 1
+  print . length . filter (>1) . fmap length . group . sort . fmap getDupleFromTriple $ listedRectangles
+
+  -- part 2
+
+generateListFromRectangle :: Rectangle -> [(Integer, Integer, Integer)]
 generateListFromRectangle (Rectangle {..}) = do
   xPoint <- [x..x + width - 1]
   yPoint <- [y..y + height - 1]
-  return (xPoint, yPoint)
+  return (uid, xPoint, yPoint)
+
+getDupleFromTriple :: (Integer, Integer, Integer) -> (Integer, Integer)
+getDupleFromTriple (_, a, b) = (a, b)
