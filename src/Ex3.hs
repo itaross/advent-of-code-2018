@@ -52,8 +52,7 @@ solEx3 = do
   print =<< getCurrentDirectory
   content <- fmap (T.lines) $ TIO.readFile "src/ex3.txt"
   let rectangles = parseFabricFile content
-      listedRectangles :: [(Integer, Integer)]
-      listedRectangles = concatMap generateListFromRectangle rectangles
+  let listedRectangles = concatMap generateListFromRectangle rectangles
   print . length . filter (>1) . fmap length . group . sort $ listedRectangles
 
 generateListFromRectangle :: Rectangle -> [(Integer, Integer)]
